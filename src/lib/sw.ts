@@ -1,4 +1,5 @@
 
+
 type Options = {
   cachePageData?: boolean
   ignoredPaths?: string[]

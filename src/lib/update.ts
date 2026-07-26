@@ -21,19 +21,23 @@ function handleAccept(worker: ServiceWorker) {
 	worker.postMessage({ type: 'SKLOCALFIRST_SKIP_WAITING' });
 }
 
-export function onUpdate(handle: (onAccept: () => void) => void) {
-	if (!('serviceWorker' in navigator)) {
-		return () => {};
-	}
+const handlers: ((onAccept: () => void) => void)[] = [];
+let listenerSetUp = false;
 
-	navigator.serviceWorker.getRegistration().then(async (reg) => {
+function setupSWListener() {
+
+  if (!('serviceWorker' in navigator)) {
+		return () => {};
+  }
+
+  navigator.serviceWorker.getRegistration().then(async (reg) => {
 		if (!reg) return;
 
 		// 1️⃣ Detect if a waiting SW already exists
 		if (reg.waiting) {
 			const sw = reg.waiting;
-			if (await checkVersionChanged(sw)) {
-				handle(() => handleAccept(sw));
+      if (await checkVersionChanged(sw)) {
+				handlers.forEach((handle) => handle(() => handleAccept(sw)));
 			}
 		}
 
@@ -44,8 +48,7 @@ export function onUpdate(handle: (onAccept: () => void) => void) {
 
 			sw.addEventListener('statechange', () => {
 				if (sw.state === 'installed' && navigator.serviceWorker.controller) {
-					// SW installed, new version waiting
-					handle(() => handleAccept(sw));
+					handlers.forEach((handle) => handle(() => handleAccept(sw)));
 				}
 			});
 		});
@@ -54,7 +57,17 @@ export function onUpdate(handle: (onAccept: () => void) => void) {
 	// 3️⃣ Reload page when the new SW takes control
 	navigator.serviceWorker.addEventListener('controllerchange', () => {
 		window.location.reload();
-	});
+  });
 
-	return () => {};
+  listenerSetUp = true;
+}
+
+export function onUpdate(handle: (onAccept: () => void) => void) {
+  handlers.push(handle);
+
+  if (!listenerSetUp) {
+    setupSWListener();
+  }
+
+  handlers.push(handle);
 }
