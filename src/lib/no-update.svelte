@@ -1,0 +1,17 @@
+<script lang="ts">
+	import { onMount, type Snippet } from 'svelte';
+	import { onUpdate } from './update.ts';
+
+	let { children }: { children?: Snippet } = $props();
+
+	let updateAvailable = $state(false);
+	onMount(() => {
+		onUpdate(() => {
+			updateAvailable = true;
+		});
+	});
+</script>
+
+{#if !updateAvailable}
+	{@render children?.()}
+{/if}

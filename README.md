@@ -11,7 +11,7 @@ npm install sveltekit-cache-first
 ```js
 // src/service-worker.js
 import { version, build, files } from '$service-worker';
-import { setupServiceWorker } from 'sveltekit-cache-first';
+import { setupServiceWorker } from 'sveltekit-cache-first/sw';
 
 setupServiceWorker(self, { version, build, files });
 ```
@@ -29,6 +29,12 @@ setupServiceWorker(self, { version, build, files });
 		<button onclick={() => accept()}>Refresh</button>
 	{/snippet}
 </UpdateAvailable>
+
+<!-- Optional -->
+<!-- Note: This will disappear after the update has been detected, which may take a few seconds to appear. Only use this if your app must always be running the latest version. And if that is that is the case, strongly consider if cache-first is the right approach, or use other methods like api versioning. -->
+<NoUpdate>
+	Main logic here
+</NoUpdate>
 ```
 
 #### Custom handler method, using [svelte-sonner](https://github.com/wobsoriano/svelte-sonner)

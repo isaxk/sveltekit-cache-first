@@ -1,10 +1,11 @@
 // Reexport your entry components here
-import { setupServiceWorker } from "./sw.ts"
 import UpdateAvailable from "./update-available.svelte"
 import { onUpdate } from "./update.ts"
+import NoUpdate from "./no-update.svelte"
+
 
 export {
-  setupServiceWorker,
   onUpdate,
-  UpdateAvailable
+  UpdateAvailable,
+  NoUpdate
 }
