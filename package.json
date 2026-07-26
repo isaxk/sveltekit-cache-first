@@ -1,6 +1,7 @@
 {
-	"name": "sveltekit-local-first",
+	"name": "sveltekit-cache-first",
 	"version": "0.0.1",
+	"repository": "github:isaxk/sveltekit-cache-first",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",

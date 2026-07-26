@@ -1,17 +1,17 @@
-# SvelteKit Local First
+# SvelteKit Cache First
 
 A small library to make your SvelteKit Web App / PWA local first.
 
 ## Setup
 
 ```bash
-npm install sveltekit-local-first
+npm install sveltekit-cache-first
 ```
 
 ```js
 // src/service-worker.js
 import { version, build, files } from '$service-worker';
-import { setupServiceWorker } from 'sveltekit-local-first';
+import { setupServiceWorker } from 'sveltekit-cache-first';
 
 setupServiceWorker(self, { version, build, files });
 ```
@@ -20,7 +20,7 @@ setupServiceWorker(self, { version, build, files });
 // src/routes/+layout.svelte
 // Example using toast from svelte-sonner
 import { toast } from 'svelte-sonner';
-import { onUpdate } from 'sveltekit-local-first';
+import { onUpdate } from 'sveltekit-cache-first';
 
 onMount(() => {
 	onUpdate((accept) => {
