@@ -1,6 +1,6 @@
 {
 	"name": "sveltekit-cache-first",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"repository": "github:isaxk/sveltekit-cache-first",
 	"license": "MIT",
 	"scripts": {
@@ -14,6 +14,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
+
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",
@@ -29,6 +30,10 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
+		},
+		"./sw": {
+			"types": "./dist/sw.d.ts",
+			"default": "./dist/sw.js"
 		}
 	},
 	"peerDependencies": {
