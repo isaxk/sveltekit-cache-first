@@ -46,9 +46,11 @@ function setupSWListener() {
 			const sw = reg.installing;
 			if (!sw) return;
 
-			sw.addEventListener('statechange', () => {
-				if (sw.state === 'installed' && navigator.serviceWorker.controller) {
-					handlers.forEach((handle) => handle(() => handleAccept(sw)));
+			sw.addEventListener('statechange', async () => {
+        if (sw.state === 'installed' && navigator.serviceWorker.controller) {
+          if (await checkVersionChanged(sw)) {
+            handlers.forEach((handle) => handle(() => handleAccept(sw)));
+          }
 				}
 			});
 		});

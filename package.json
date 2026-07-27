@@ -1,6 +1,6 @@
 {
 	"name": "sveltekit-cache-first",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"repository": "github:isaxk/sveltekit-cache-first",
 	"license": "MIT",
 	"scripts": {
