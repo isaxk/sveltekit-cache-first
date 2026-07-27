@@ -2,6 +2,7 @@
 	"name": "sveltekit-cache-first",
 	"version": "0.0.3",
 	"repository": "github:isaxk/sveltekit-cache-first",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",
