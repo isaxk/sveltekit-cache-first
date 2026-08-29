@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, type Snippet } from 'svelte';
-	import { onUpdate } from './update.ts';
+	import { onUpdate } from './client.ts';
 
 	let { children }: { children?: Snippet<[{ accept: () => void }]> } = $props();
 
