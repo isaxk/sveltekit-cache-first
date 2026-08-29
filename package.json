@@ -1,6 +1,6 @@
 {
 	"name": "sveltekit-cache-first",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"repository": "github:isaxk/sveltekit-cache-first",
 	"scripts": {
 		"dev": "vite dev",
